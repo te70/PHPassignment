@@ -26,7 +26,10 @@ if (mysqli_connect_error()) {
  }else if($_POST['Secret_word']==''){
  		echo "<p>input the secret word</p>";
  }else{
-    	$query = "INSERT INTO 'form1'('password','FName','LName','username','gender','d.o.b','secret-word') VALUES ('".mysqli_real_escape_string($link,$_POST['password'])."','".mysqli_real_escape_string($link,$_POST['First_name'])."','".mysqli_real_escape_string($link,$_POST['Last_name'])."','".mysqli_real_escape_string($link,$_POST['username'])."',.'".mysqli_real_escape_string($link,$_POST['gender'])."','".mysqli_real_escape_string($link,$_POST['dob'])."'.'".mysqli_real_escape_string($link,$_POST['Secret_word'])."')";
+    	$query = "INSERT INTO forms(FName,LName,
+    	email,username,password,gender,dob,sword) VALUES ('".mysqli_real_escape_string($link,$_POST['First_name'])."','".mysqli_real_escape_string($link,$_POST['Last_name'])."','".mysqli_real_escape_string($link,$_POST['email'])."','".mysqli_real_escape_string($link,$_POST['username'])."',.'".mysqli_real_escape_string($link,$_POST['password'])."','".mysqli_real_escape_string($link,$_POST['gender'])."'.'".
+    		mysqli_real_escape_string($link,$_POST['dob'])."'.'".
+    	mysqli_real_escape_string($link,$_POST['Secret_word'])."')";
     	
     	if(mysqli_query($link,$query)){
     		echo "<p>you have been registered</p>";
@@ -36,6 +39,7 @@ if (mysqli_connect_error()) {
     	}
     }
 }
+
 
 ?>
 
@@ -56,9 +60,9 @@ if (mysqli_connect_error()) {
 		<input type="text" name="First_name" required="true" placeholder="Ian"/><br/>
 		<label for="Last_name">Last Name </label><br/>
 		<input type="text" name="Last_name" required="true" placeholder="Paul"/><br/>
-		<label for="Email">Email</label><br/>
+		<label for="email">Email</label><br/>
 		<input type="Email" name="email" required="true" placeholder="example@domain.com"/><br/>
-		<label for="Username">Username</label><br/>
+		<label for="username">Username</label><br/>
 		<input type="text" name="username" required="true" placeholder="Vortex"/><br/>
 		<label for="password">Password</label><br/>
 		<input type="password" name="password"/><br/>
