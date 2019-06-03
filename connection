@@ -1,0 +1,16 @@
+<?php
+$hostname="localhost";
+$hostuser="forms";
+$hostpass="";
+$dbname="forms";
+
+$link =  new mysqli("localhost", "forms", "", "forms");
+if ($link->connect_error) {
+        
+    die ("There was an error connecting to the database");
+    }
+    else{
+   // print "Connected";
+}
+
+?>
