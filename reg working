@@ -1,0 +1,71 @@
+<?php
+
+ 		
+	 session_start();
+     require_once"Connection.php";
+     if(isset($_POST["submit"])){
+     $First_name=mysqli_real_escape_string($link,$_POST['First_name']);
+     $Last_name=mysqli_real_escape_string($link,$_POST['Last_name']);
+     $Email=mysqli_real_escape_string($link,$_POST['email']);
+     $Username=mysqli_real_escape_string($link,$_POST['username']);
+     $Password=mysqli_real_escape_string($link,$_POST['password']);
+     $Gender=mysqli_real_escape_string($link,$_POST['gender']);
+     $dob=mysqli_real_escape_string($link,$_POST['dob']);
+     $Secret_word=mysqli_real_escape_string($link,$_POST['Secret_word']);
+
+    	$input= "INSERT INTO forms(FName,LName,
+    	email,username,password,gender,dob,sword) VALUES ('$First_name','$Last_name','$Email','$Username','$Password','$Gender','$dob','$Secret_word')";
+    	//if statement for link and query
+    	if(mysqli_query($link,$input)){
+    		print "";
+
+    	}else{
+    		print "There was a problem registering";
+    	}
+  
+}
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RegistrationForm</title>
+	<style type="text/css">
+		body{
+			text-align: center;
+		}
+	</style>
+<head>
+<body>
+	<h3>REGISTRATION FORM</h3>
+	<form id="Registration" method="POST">
+		<label for="First_name">First Name</label><br/>
+		<input type="text" name="First_name" required="true" placeholder="Ian"/><br/>
+		<label for="Last_name">Last Name </label><br/>
+		<input type="text" name="Last_name" required="true" placeholder="Paul"/><br/>
+		<label for="email">Email</label><br/>
+		<input type="Email" name="email" required="true" placeholder="example@domain.com"/><br/>
+		<label for="username">Username</label><br/>
+		<input type="text" name="username" required="true" placeholder="Vortex"/><br/>
+		<label for="password">Password</label><br/>
+		<input type="password" name="password"/><br/>
+		<label for="gender">Gender</label><br/>
+		<input type="radio" name="gender" value="f" checked="true"/>Female <br/> m
+		<input type="radio" name="gender" value="m" checked="true"/>Male <br/>
+		<label for="dob">Date Of Birth </label><br/>
+		<input type="date" name="dob" required="true"/><br/>
+
+		<label for="Secret_word">Secret Word </label><br/>
+		<input type="text" name="Secret_word"/><br/>
+
+
+		<br/><br/>
+		<input type="submit" name="submit" value="submit"/>
+
+	</form>
+
+
+
+</body>
+</html>
