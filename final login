@@ -1,0 +1,45 @@
+<?php
+	session_start();
+	
+	if(isset($_POST['login'])){
+		$link=mysqli_connect("localhost","forms","","forms");
+		$username=$_POST['username'];
+		$password=$_POST['password'];
+		
+		$sql=mysqli_query($link,'SELECT *FROM forms WHERE username="'.$username.'"and password="'.$password.'"');
+		if(mysqli_num_rows($sql)){
+			$_SESSION['username']=$username;
+			header('Location:order.php');
+		}else{
+			echo "";
+		}
+		}
+	
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LoginForm</title>
+
+</head>
+<body>
+	<h3>Login Form</h3>
+	<form method="POST">
+		<div class="form-group">
+		<label>Username</label><br/>
+		<input type="text" name="username" class="form-control" placeholder=" Username "/><br/>
+	</div>
+	<div class="form-group">
+		<label for="password">Password</label><br/>
+		<input type="password" name="password" class="form-control"/><br/>
+	</div>
+		<br/><br/>
+		<div class="form-group">
+		<button type="submit" name="login" value="login">login</button>
+	</div>
+	</form>
+
+</body>
+</html>
